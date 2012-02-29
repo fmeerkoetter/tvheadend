@@ -23,7 +23,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	colored : true
     });
 
-    var cmlist = Array();
+    var cmlist = new Array();
 
     cmlist.push(enabledColumn,
 	{
