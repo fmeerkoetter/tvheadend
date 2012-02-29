@@ -107,7 +107,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	baseParams: {op: "get"},
 	listeners: {
 	    'update': function(s, r, o) {
-		d = s.getModifiedRecords().length == 0
+		d = s.getModifiedRecords().length == 0;
 		saveBtn.setDisabled(d);
 		rejectBtn.setDisabled(d);
 	    }
@@ -116,7 +116,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
   
     tvheadend.comet.on('dvbMux', function(m) {
 	
-	r = store.getById(m.id)
+	r = store.getById(m.id);
 	if(typeof r === 'undefined') {
 	    store.reload();
 	    return;
@@ -139,9 +139,9 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
             Ext.MessageBox.alert('Message',
 				 'Please select at least one item to delete');
         }
-    };
-    
-    
+    }
+
+
     function deleteRecord(btn) {
 	if(btn=='yes') {
 	    var selectedKeys = grid.selModel.selections.keys;
@@ -158,7 +158,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 		success:function(response,options) {
 		    store.reload();
 		}
-	    })
+	    });
 	}
     }
 
@@ -315,14 +315,14 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 		text: 'Add mux(es) manually...',
 		iconCls:'add',
 		handler: function() {
-		    tvheadend.addMuxManually(adapterData, satConfStore)
+		    tvheadend.addMuxManually(adapterData, satConfStore);
 		}
 	    }
 	]
     });
 
     return grid;
-}
+};
 
 
 /**
@@ -359,7 +359,7 @@ tvheadend.dvb_services = function(adapterId) {
 			    r = Ext.util.JSON.decode(response.responseText);
 			    tvheadend.showTransportDetails(r);
 			}
-		    })
+		    });
 		}
 	    }
 	]
@@ -377,8 +377,8 @@ tvheadend.dvb_services = function(adapterId) {
 	    dataIndex: 'id',
 	    width: 50,
 	    renderer: function(value, metadata, record, row, col, store) {
-		url = 'stream/service/' + value
-		return '<a href="'+url+'">Play</a>'
+		url = 'stream/service/' + value;
+		return '<a href="'+url+'">Play</a>';
 	    }
 	},
 	{
@@ -502,7 +502,7 @@ tvheadend.dvb_services = function(adapterId) {
     });
 
     var storeReloader = new Ext.util.DelayedTask(function() {
-	store.reload()
+        store.reload();
     });
   
     tvheadend.comet.on('dvbService', function(m) {
@@ -520,7 +520,7 @@ tvheadend.dvb_services = function(adapterId) {
             Ext.MessageBox.alert('Message',
 				 'Please select at least one item to delete');
         }
-    };
+    }
     
  
     function saveChanges() {
@@ -581,7 +581,7 @@ tvheadend.dvb_services = function(adapterId) {
 	tbar: [saveBtn,  rejectBtn]
     });
     return grid;
-}
+};
 
 /**
  *
@@ -665,7 +665,7 @@ tvheadend.addMuxByLocation = function(adapterData, satConfStore) {
         })
     });
     win.show();
-}
+};
 
 
 /**
@@ -998,7 +998,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
     });
     win.show();
 
-}
+};
 
 /**
  * DVB adapter details
@@ -1027,7 +1027,7 @@ tvheadend.dvb_adapter_general = function(adapterData, satConfStore) {
 		params: {
 		    op: 'serviceprobe'
 		}
-	    })
+	    });
 	}
     });
 
@@ -1200,7 +1200,7 @@ tvheadend.dvb_adapter_general = function(adapterData, satConfStore) {
     });
 
     return panel;
-}
+};
 
 
 
@@ -1214,7 +1214,7 @@ tvheadend.dvb_dummy = function(title)
 	items:[{border: false}],
 	title: title
     });
-}
+};
 
 /**
  *
@@ -1265,7 +1265,7 @@ tvheadend.dvb_satconf = function(adapterId, lnbStore)
     return new tvheadend.tableEditor('Satellite config', 
 				     'dvbsatconf/' + adapterId, cm, rec,
 				     null, null, null);
-}
+};
 
 
 /**
@@ -1311,4 +1311,4 @@ tvheadend.dvb_adapter = function(data)
     
     return panel;
 
-}
+};
