@@ -670,8 +670,7 @@ tvheadend.addMuxByLocation = function(adapterData, satConfStore) {
  */
 tvheadend.addMuxManually = function(adapterData, satConfStore) {
     
-    var adId = adapterData.identifier;
-
+    var adapterId = adapterData.identifier;
 
     var items = [];
 
@@ -700,7 +699,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/bandwidths/' + adId
+		url: 'dvb/feopts/bandwidths/' + adapterId
 	    })
 	}));
 
@@ -717,7 +716,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/constellations/' + adId
+		url: 'dvb/feopts/constellations/' + adapterId
 	    })
 	}));
 
@@ -734,7 +733,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/transmissionmodes/' + adId
+		url: 'dvb/feopts/transmissionmodes/' + adapterId
 	    })
 	}));
 
@@ -751,7 +750,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/guardintervals/' + adId
+		url: 'dvb/feopts/guardintervals/' + adapterId
 	    })
 	}));
 
@@ -768,7 +767,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/hierarchies/' + adId
+		url: 'dvb/feopts/hierarchies/' + adapterId
 	    })
 	}));
 
@@ -785,7 +784,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/fec/' + adId
+		url: 'dvb/feopts/fec/' + adapterId
 	    })
 	}));
 
@@ -802,7 +801,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/fec/' + adId
+		url: 'dvb/feopts/fec/' + adapterId
 	    })
 	}));
 	break;
@@ -839,7 +838,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/constellations/' + adId
+		url: 'dvb/feopts/constellations/' + adapterId
 	    })
 	}));
 	
@@ -856,7 +855,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/fec/' + adId
+		url: 'dvb/feopts/fec/' + adapterId
 	    })
 	}));
 	break;
@@ -891,7 +890,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/fec/' + adId
+		url: 'dvb/feopts/fec/' + adapterId
 	    })
 	}));
 
@@ -908,7 +907,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/delsys/' + adId
+		url: 'dvb/feopts/delsys/' + adapterId
 	    })
 	}));
 
@@ -925,7 +924,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/constellations/' + adId
+		url: 'dvb/feopts/constellations/' + adapterId
 	    })
 	}));
 
@@ -942,7 +941,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	    store: new Ext.data.JsonStore({
 		root:'entries',
 		fields: ['title', 'id'],
-		url: 'dvb/feopts/polarisations/' + adId
+		url: 'dvb/feopts/polarisations/' + adapterId
 	    })
 	}));
     }
