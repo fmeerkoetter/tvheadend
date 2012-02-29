@@ -493,7 +493,7 @@ tvheadend.dvb_services = function(adapterId) {
 	baseParams: {op: "get"},
 	listeners: {
 	    'update': function(s, r, o) {
-		var d = s.getModifiedRecords().length == 0
+		var d = s.getModifiedRecords().length == 0;
 		saveBtn.setDisabled(d);
 		rejectBtn.setDisabled(d);
 	    }
