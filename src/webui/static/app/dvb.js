@@ -23,7 +23,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	colored : true
     });
 
-    var cmlist = new Array();
+    var cmlist = [];
 
     cmlist.push(enabledColumn,
 	{
@@ -236,7 +236,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
  
     function saveChanges() {
 	var mr = store.getModifiedRecords();
-	var out = new Array();
+	var out = [];
 	for (var x = 0; x < mr.length; x++) {
 	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
@@ -524,7 +524,7 @@ tvheadend.dvb_services = function(adapterId) {
  
     function saveChanges() {
 	var mr = store.getModifiedRecords();
-	var out = new Array();
+	var out = [];
 	for (var x = 0; x < mr.length; x++) {
 	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
