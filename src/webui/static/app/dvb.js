@@ -5,7 +5,7 @@
  */
 tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 
-    adapterId = adapterData.identifier;
+    var adapterId = adapterData.identifier;
 
     var fm = Ext.form;
     
@@ -69,7 +69,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	    dataIndex: 'satconf',
 	    width: 100,
 	    renderer: function(value, metadata, record, row, col, store) {
-		r = satConfStore.getById(value);
+		var r = satConfStore.getById(value);
 		return typeof r === 'undefined' ? 
 		    '<span class="tvh-grid-unset">Unset</span>'
 		    : r.data.name;
@@ -107,7 +107,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	baseParams: {op: "get"},
 	listeners: {
 	    'update': function(s, r, o) {
-		d = s.getModifiedRecords().length == 0;
+		var d = s.getModifiedRecords().length == 0;
 		saveBtn.setDisabled(d);
 		rejectBtn.setDisabled(d);
 	    }
@@ -116,13 +116,13 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
   
     tvheadend.comet.on('dvbMux', function(m) {
 	
-	r = store.getById(m.id);
+	var r = store.getById(m.id);
 	if(typeof r === 'undefined') {
 	    store.reload();
 	    return;
 	}
 
-	for (key in m)
+	for (var key in m)
 	    r.data[key] = m[key];
 
 	store.afterEdit(r);
@@ -183,7 +183,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	     });
 	 }
 
-	 targetStore = new Ext.data.JsonStore({
+	 var targetStore = new Ext.data.JsonStore({
 	     root:'entries',
 	     id: 'identifier',
 	     url:'dvb/adapter',
@@ -221,7 +221,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
              }]
 	 });
 
-	 win = new Ext.Window({
+	 var win = new Ext.Window({
 	     title: 'Copy multiplex configuration',
              layout: 'fit',
              width: 500,
@@ -238,8 +238,7 @@ tvheadend.dvb_muxes = function(adapterData, satConfStore) {
 	var mr = store.getModifiedRecords();
 	var out = new Array();
 	for (var x = 0; x < mr.length; x++) {
-	    v = mr[x].getChanges();
-	    out[x] = v;
+	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
 	}
 
@@ -356,7 +355,7 @@ tvheadend.dvb_services = function(adapterId) {
 		    Ext.Ajax.request({
 			url: "servicedetails/" + record.id,
 			success:function(response, options) {
-			    r = Ext.util.JSON.decode(response.responseText);
+			    var r = Ext.util.JSON.decode(response.responseText);
 			    tvheadend.showTransportDetails(r);
 			}
 		    });
@@ -377,7 +376,7 @@ tvheadend.dvb_services = function(adapterId) {
 	    dataIndex: 'id',
 	    width: 50,
 	    renderer: function(value, metadata, record, row, col, store) {
-		url = 'stream/service/' + value;
+		var url = 'stream/service/' + value;
 		return '<a href="'+url+'">Play</a>';
 	    }
 	},
@@ -494,7 +493,7 @@ tvheadend.dvb_services = function(adapterId) {
 	baseParams: {op: "get"},
 	listeners: {
 	    'update': function(s, r, o) {
-		d = s.getModifiedRecords().length == 0
+		var d = s.getModifiedRecords().length == 0
 		saveBtn.setDisabled(d);
 		rejectBtn.setDisabled(d);
 	    }
@@ -527,8 +526,7 @@ tvheadend.dvb_services = function(adapterId) {
 	var mr = store.getModifiedRecords();
 	var out = new Array();
 	for (var x = 0; x < mr.length; x++) {
-	    v = mr[x].getChanges();
-	    out[x] = v;
+	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
 	}
 
@@ -605,6 +603,7 @@ tvheadend.addMuxByLocation = function(adapterData, satConfStore) {
 	}
     });
 
+    var satConfCombo = false;
     if(satConfStore) {
 	satConfCombo = new Ext.form.ComboBox({
 	    store: satConfStore,
@@ -617,8 +616,6 @@ tvheadend.addMuxByLocation = function(adapterData, satConfStore) {
 	    valueField:'identifier',
 	    emptyText: 'Select satellite configuration...'
 	});
-    } else {
-	satConfCombo = false;
     }
 
     var locationList = new Ext.tree.TreePanel({
@@ -649,7 +646,7 @@ tvheadend.addMuxByLocation = function(adapterData, satConfStore) {
 	}
     });
 	
-    win = new Ext.Window({
+    var win = new Ext.Window({
 	title: 'Add muxes on ' + adapterData.name,
         layout: 'fit',
         width: 500,
@@ -988,7 +985,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
 	
     });
 
-    win = new Ext.Window({
+    var win = new Ext.Window({
 	title: 'Add muxes on ' + adapterData.name,
         layout: 'fit',
         width: 500,
@@ -1005,7 +1002,7 @@ tvheadend.addMuxManually = function(adapterData, satConfStore) {
  */
 tvheadend.dvb_adapter_general = function(adapterData, satConfStore) {
 
-    adapterId = adapterData.identifier;
+    var adapterId = adapterData.identifier;
 
     var addMuxByLocationBtn = new Ext.Button({
 	style:'margin:5px',
@@ -1103,7 +1100,7 @@ tvheadend.dvb_adapter_general = function(adapterData, satConfStore) {
     ];
 
     if(satConfStore) { 
-	v = new Ext.form.ComboBox({
+        var v = new Ext.form.ComboBox({
 	    name: 'diseqcversion',
 	    fieldLabel: 'DiSEqC version',
 	    editable: false,
