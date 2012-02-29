@@ -1273,7 +1273,7 @@ tvheadend.dvb_satconf = function(adapterId, lnbStore)
  */
 tvheadend.dvb_adapter = function(data)
 {
-
+    var satConfStore = false;
     if(data.satConf) {
 	var lnbStore = new Ext.data.JsonStore({
 	    root:'entries',
@@ -1282,15 +1282,13 @@ tvheadend.dvb_adapter = function(data)
 	    url:'dvb/lnbtypes'
 	});
 
-	var satConfStore = new Ext.data.JsonStore({
+	satConfStore = new Ext.data.JsonStore({
 	    root:'entries',
 	    autoLoad: true,
 	    id: 'identifier',
 	    fields: ['identifier', 'name'],
 	    url:'dvb/satconf/' + data.identifier
 	});
-    } else {
-	satConfStore = false;
     }
 
     var items = [
