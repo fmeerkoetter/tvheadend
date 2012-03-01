@@ -26,13 +26,13 @@ tvheadend.tvAdapterStore = new Ext.data.JsonStore({
 });
 
 tvheadend.comet.on('tvAdapter', function(m) {
-    idx = tvheadend.tvAdapterStore.find('identifier', m.identifier);
+    var idx = tvheadend.tvAdapterStore.find('identifier', m.identifier);
     if(idx == -1)
 	return;
-    r = tvheadend.tvAdapterStore.getAt(idx);
+    var r = tvheadend.tvAdapterStore.getAt(idx);
     
     r.beginEdit();
-    for (key in m)
+    for (var key in m)
 	r.set(key, m[key]);
     r.endEdit();
     tvheadend.tvAdapterStore.commitChanges();
@@ -85,17 +85,18 @@ tvheadend.tvadapters = function()
 	panel.remove(panel.getComponent(0));
 	panel.doLayout();
 
+	var newPanel;
 	if(r.data.type == 'dvb')
-	    var newPanel = new tvheadend.dvb_adapter(r.data)
+	    newPanel = new tvheadend.dvb_adapter(r.data);
 	else
-	    var newPanel = new tvheadend.v4l_adapter(r.data)
+	    newPanel = new tvheadend.v4l_adapter(r.data);
 
 	panel.add(newPanel);
 	panel.doLayout();
     });
 
     return panel;
-}
+};
 
 
 /**
@@ -103,7 +104,7 @@ tvheadend.tvadapters = function()
  */
 tvheadend.showTransportDetails = function(data) 
 {
-    html = '';
+    var html = '';
 
     html += '<div style="display:block;font-weight:bold;margin-bottom:4px">';
     html += '<span style="float:left;width:100px">PID </span>';
@@ -111,8 +112,8 @@ tvheadend.showTransportDetails = function(data)
     html += '<span>Details</span>';
     html += '</div>';
 
-    for(i = 0; i < data.streams.length; i++) {
-	s = data.streams[i];
+    for(var i = 0; i < data.streams.length; i++) {
+        var s = data.streams[i];
 	
 	html += '<div style="display:block">';
 	html += '<span style="float:left;width:100px">' + s.pid  + '</span>';
@@ -121,7 +122,7 @@ tvheadend.showTransportDetails = function(data)
 	html += '</div>';
     }
 
-    win = new Ext.Window({
+    var win = new Ext.Window({
 	title: 'Service details for ' + data.title,
         layout: 'fit',
         width: 400,
@@ -131,4 +132,4 @@ tvheadend.showTransportDetails = function(data)
 	html: html
     });
     win.show();
-}
+};
