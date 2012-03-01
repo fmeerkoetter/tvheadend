@@ -25,7 +25,7 @@ tvheadend.help = function(title, pagename) {
 	    win.show();
 
 	}});
-}
+};
 
 /**
  * Displays a mediaplayer using VLC plugin
@@ -165,7 +165,7 @@ tvheadend.VLC = function(url) {
         iconCls: 'control_volume',
         tooltip: 'Volume',
         disabled: true
-      },
+      }
     ],
     items: [vlc, missingPlugin]
   });
@@ -223,7 +223,7 @@ tvheadend.VLC = function(url) {
 function accessUpdate(o) {
 
     if(o.dvr == true && tvheadend.dvrpanel == null) {
-	tvheadend.dvrpanel = new tvheadend.dvr;
+        tvheadend.dvrpanel = new tvheadend.dvr();
 	tvheadend.rootTabPanel.add(tvheadend.dvrpanel);
     }
 
@@ -233,15 +233,15 @@ function accessUpdate(o) {
 	    autoScroll:true, 
 	    title: 'Configuration', 
 	    iconCls: 'wrench',
-	    items: [new tvheadend.chconf,
-		    new tvheadend.xmltv,
-		    new tvheadend.cteditor,
-		    new tvheadend.dvrsettings,
-		    new tvheadend.tvadapters,
-		    new tvheadend.iptv,
-		    new tvheadend.acleditor, 
-		    new tvheadend.cwceditor,
-                    new tvheadend.capmteditor]
+	    items: [new tvheadend.chconf(),
+		    new tvheadend.xmltv(),
+		    new tvheadend.cteditor(),
+		    new tvheadend.dvrsettings(),
+		    new tvheadend.tvadapters(),
+		    new tvheadend.iptv(),
+		    new tvheadend.acleditor(),
+		    new tvheadend.cwceditor(),
+		    new tvheadend.capmteditor()]
 	});
 	tvheadend.rootTabPanel.add(tvheadend.confpanel);
     }
@@ -277,12 +277,12 @@ function makeRTSPprefix() {
 *
 */
 tvheadend.log = function(msg, style) {
-    s = style ? '<div style="' + style + '">' : '<div>'
+    var s = style ? '<div style="' + style + '">' : '<div>';
 
-    sl = Ext.get('systemlog');
-    e = Ext.DomHelper.append(sl, s + '<pre>' + msg + '</pre></div>');
+    var sl = Ext.get('systemlog');
+    var e = Ext.DomHelper.append(sl, s + '<pre>' + msg + '</pre></div>');
     e.scrollIntoView('systemlog');
-}
+};
 
 
 
@@ -301,7 +301,7 @@ tvheadend.app = function() {
 	    tvheadend.rootTabPanel = new Ext.TabPanel({
 		region:'center',
 		activeTab:0,
-		items:[new tvheadend.epg]
+		items:[new tvheadend.epg()]
 	    });
 
 	    var viewport = new Ext.Viewport({
@@ -342,7 +342,7 @@ tvheadend.app = function() {
 		tvheadend.log(m.logtxt);
 	    });
 
-	    new tvheadend.cometPoller;
+		  new tvheadend.cometPoller();
 
 	    Ext.QuickTips.init();
 	}
