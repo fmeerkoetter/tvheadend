@@ -31,9 +31,9 @@ tvheadend.epgDetails = function(event) {
       content += '<div class="x-epg-meta">' + event.ext_text + '</div>';
 
     content += '<div class="x-epg-meta"><a target="_blank" href="' + 
-	'http://akas.imdb.org/find?q=' + event.title + '">Search IMDB</a></div>'
+        'http://akas.imdb.org/find?q=' + event.title + '">Search IMDB</a></div>';
 
-    now = new Date();
+    var now = new Date();
     if(event.start < now && event.end > now) {
       content += "<div class=\"x-epg-meta\">" +
             "<a href=\"javascript:tvheadend.VLC('stream/channelid/" +
@@ -91,7 +91,7 @@ tvheadend.epgDetails = function(event) {
 	});
     }
 
-}
+};
 
 
 /**
@@ -140,7 +140,7 @@ tvheadend.epg = function() {
    });
 
     function setMetaAttr(meta, record){
-        var now = new Date;
+        var now = new Date();
         var start = record.get('start');
 
         if(now.getTime() > start.getTime()){
@@ -431,5 +431,5 @@ tvheadend.epg = function() {
     }
 
     return panel;
-}
+};
 
