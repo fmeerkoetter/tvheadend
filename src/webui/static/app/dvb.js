@@ -429,7 +429,7 @@ tvheadend.dvb_services = function(adapterId) {
 					['ISO8859-13','ISO8859-13'],
 					['ISO8859-14','ISO8859-14'],
 					['ISO8859-15','ISO8859-15']
-       				]
+				]
 			}),
 			typeAhead: true,
 			lazyRender: true,
@@ -507,20 +507,6 @@ tvheadend.dvb_services = function(adapterId) {
     tvheadend.comet.on('dvbService', function(m) {
 	storeReloader.delay(500);
     });
-
-
-    function delSelected() {
-	var selectedKeys = grid.selModel.selections.keys;
-	if(selectedKeys.length > 0) {
-            Ext.MessageBox.confirm('Message',
-				   'Do you really want to delete selection?',
-				   deleteRecord);
-        } else {
-            Ext.MessageBox.alert('Message',
-				 'Please select at least one item to delete');
-        }
-    }
-    
  
     function saveChanges() {
 	var mr = store.getModifiedRecords();
