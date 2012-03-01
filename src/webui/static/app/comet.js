@@ -55,16 +55,16 @@ tvheadend.cometPoller = function() {
     });
 
     function parse_comet_response(responsetxt) {
-	response = Ext.util.JSON.decode(responsetxt);
-	tvheadend.boxid = response.boxid
-	for(x = 0; x < response.messages.length; x++) {
-            m = response.messages[x];
+        var response = Ext.util.JSON.decode(responsetxt);
+        tvheadend.boxid = response.boxid;
+        for(var x = 0; x < response.messages.length; x++) {
+            var m = response.messages[x];
 	    tvheadend.comet.fireEvent(m.notificationClass, m);
 	}
 	cometRequest.delay(100);
-    };
+    }
 
     cometRequest.delay(100);
-}
+};
 
 
