@@ -27,8 +27,8 @@ tvheadend.tableEditor = function(title, dtable, cm, rec, plugins, store,
 		store.insert(0, p);
 		grid.startEditing(0, 0);
 	    }
-	})
-    };
+	});
+    }
     
     
     
@@ -42,7 +42,7 @@ tvheadend.tableEditor = function(title, dtable, cm, rec, plugins, store,
             Ext.MessageBox.alert('Message',
 				 'Please select at least one item to delete');
         }
-    };
+    }
     
     
     function deleteRecord(btn) {
@@ -58,16 +58,15 @@ tvheadend.tableEditor = function(title, dtable, cm, rec, plugins, store,
 		success:function(response,options) {
 		    store.reload();
 		}
-	    })
+	    });
 	}
     }
  
     function saveChanges() {
 	var mr = store.getModifiedRecords();
-	var out = new Array();
+	var out = [];
 	for (var x = 0; x < mr.length; x++) {
-	    v = mr[x].getChanges();
-	    out[x] = v;
+	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
 	}
 
@@ -114,7 +113,7 @@ tvheadend.tableEditor = function(title, dtable, cm, rec, plugins, store,
     });
 
     store.on('update', function(s, r, o) {
-	d = s.getModifiedRecords().length == 0
+        var d = s.getModifiedRecords().length == 0;
 	saveBtn.setDisabled(d);
 	rejectBtn.setDisabled(d);
     });
@@ -153,5 +152,5 @@ tvheadend.tableEditor = function(title, dtable, cm, rec, plugins, store,
 	      ]
     });
     return grid;
-}
+};
 
