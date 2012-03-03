@@ -55,7 +55,7 @@ tvheadend.capmteditor = function() {
 	'enabled','connected','camdfilename','port','comment'
     ]);
 
-    store = new Ext.data.JsonStore({
+    var store = new Ext.data.JsonStore({
        root: 'entries',
        fields: rec,
        url: "tablemgr",
@@ -74,4 +74,4 @@ tvheadend.capmteditor = function() {
     return new tvheadend.tableEditor('Capmt Connections', 'capmt', cm, rec,
 				     [enabledColumn], store,
 				     'config_capmt.html', 'key');
-}
+};

@@ -74,4 +74,4 @@ tvheadend.acleditor = function() {
 				      adminColumn],
 				     null,
 				     'config_access.html', 'group');
-}
+};

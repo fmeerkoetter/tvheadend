@@ -85,7 +85,7 @@ tvheadend.mergeChannel = function(chan) {
         }]
     });
 
-    win = new Ext.Window({
+    var win = new Ext.Window({
 	title: 'Merge channel ' + chan.name + ' into...',
         layout: 'fit',
         width: 500,
@@ -96,7 +96,7 @@ tvheadend.mergeChannel = function(chan) {
     });
     win.show();
 
-}
+};
 
 
 /**
@@ -164,8 +164,8 @@ tvheadend.chconf = function()
 	    dataIndex: 'chid',
 	    width: 50,
 	    renderer: function(value, metadata, record, row, col, store) {
-	    url = 'playlist/channelid/' + value
-	    return "<a href=\"javascript:tvheadend.VLC('"+url+"')\">Play</a>"
+	    var url = 'playlist/channelid/' + value;
+	    return "<a href=\"javascript:tvheadend.VLC('"+url+"')\">Play</a>";
 	    }
 	},
 	{
@@ -194,8 +194,8 @@ tvheadend.chconf = function()
 		    return '<span class="tvh-grid-unset">No tags</span>';
 		}
 
-		ret = [];
-		tags = value.split(',');
+		var ret = [];
+		var tags = value.split(',');
 		for (var i = 0; i < tags.length; i++) {
 		    var tag = tvheadend.channelTags.getById(tags[i]);
 		    if (typeof tag !== 'undefined') {
@@ -281,7 +281,7 @@ tvheadend.chconf = function()
 		failure:function(response,options) {
 		    Ext.MessageBox.alert('Server Error','Unable to delete');
 		}
-	    })
+	    });
 	}
     }
 
@@ -289,8 +289,7 @@ tvheadend.chconf = function()
 	var mr = tvheadend.channels.getModifiedRecords();
 	var out = new Array();
 	for (var x = 0; x < mr.length; x++) {
-	    v = mr[x].getChanges();
-	    out[x] = v;
+	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
 	}
 
@@ -367,7 +366,7 @@ tvheadend.chconf = function()
     });
 
     tvheadend.channels.on('update', function(s, r, o) {
-	d = s.getModifiedRecords().length == 0
+        var d = s.getModifiedRecords().length == 0;
 	saveBtn.setDisabled(d);
 	rejectBtn.setDisabled(d);
     });
@@ -378,4 +377,4 @@ tvheadend.chconf = function()
     });
 
     return grid;
-}
+};
