@@ -23,10 +23,10 @@ tvheadend.iptv = function(adapterId) {
 		    Ext.Ajax.request({
 			url: "servicedetails/" + record.id,
 			success:function(response, options) {
-			    r = Ext.util.JSON.decode(response.responseText);
+			    var r = Ext.util.JSON.decode(response.responseText);
 			    tvheadend.showTransportDetails(r);
 			}
-		    })
+		    });
 		}
 	    }
 	]
@@ -118,7 +118,7 @@ tvheadend.iptv = function(adapterId) {
 	baseParams: {op: "get"},
 	listeners: {
 	    'update': function(s, r, o) {
-		d = s.getModifiedRecords().length == 0
+		var d = s.getModifiedRecords().length == 0;
 		saveBtn.setDisabled(d);
 		rejectBtn.setDisabled(d);
 	    }
@@ -152,8 +152,8 @@ tvheadend.iptv = function(adapterId) {
 		store.insert(0, p);
 		grid.startEditing(0, 0);
 	    }
-	})
-    };
+	});
+    }
 
 
     function delSelected() {
@@ -166,7 +166,7 @@ tvheadend.iptv = function(adapterId) {
             Ext.MessageBox.alert('Message',
 				 'Please select at least one item to delete');
         }
-    };
+    }
     
      function deleteRecord(btn) {
 	if(btn=='yes') {
@@ -184,16 +184,15 @@ tvheadend.iptv = function(adapterId) {
 		success:function(response,options) {
 		    store.reload();
 		}
-	    })
+	    });
 	}
     }
 
     function saveChanges() {
 	var mr = store.getModifiedRecords();
-	var out = new Array();
+	var out = [];
 	for (var x = 0; x < mr.length; x++) {
-	    v = mr[x].getChanges();
-	    out[x] = v;
+	    out[x] = mr[x].getChanges();
 	    out[x].id = mr[x].id;
 	}
 
@@ -263,7 +262,7 @@ tvheadend.iptv = function(adapterId) {
     });
 
     store.on('update', function(s, r, o) {
-	d = s.getModifiedRecords().length == 0
+        var d = s.getModifiedRecords().length == 0;
 	saveBtn.setDisabled(d);
 	rejectBtn.setDisabled(d);
     });
@@ -273,4 +272,4 @@ tvheadend.iptv = function(adapterId) {
     });
 
     return grid;
-}
+};
