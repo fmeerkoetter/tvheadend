@@ -384,12 +384,11 @@ tvheadend.epg = function() {
 	})
     });
 
-    panel.on('rowclick', rowclicked);
-
 
     function rowclicked(grid, index) {
 	new tvheadend.epgDetails(grid.getStore().getAt(index).data);
     }
+    panel.on('rowclick', rowclicked);
 
     function createAutoRec() {
 

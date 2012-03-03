@@ -407,11 +407,10 @@ tvheadend.dvrschedule = function() {
 
     });
 
-    
-    panel.on('rowclick', rowclicked);
     function rowclicked(grid, index) {
 	new tvheadend.dvrDetails(grid.getStore().getAt(index).data);
     }
+    panel.on('rowclick', rowclicked);
     return panel;
 };
 
