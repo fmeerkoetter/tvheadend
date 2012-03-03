@@ -62,7 +62,7 @@ tvheadend.dvrDetails = function(entry) {
 
     content += '<div class="x-epg-title">' + entry.title + '</div>';
     content += '<div class="x-epg-desc">' + entry.description + '</div>';
-    content += '<hr>'
+    content += '<hr>';
     content += '<div class="x-epg-meta">Status: ' + entry.status + '</div>';
 
     if(entry.url != null && entry.filesize > 0) {
@@ -133,7 +133,7 @@ tvheadend.dvrDetails = function(entry) {
 	    params: {entryId: entry.id, op: 'deleteEntry'},
 
 	    success:function(response, options) {
-		win.close();v
+		win.close();
 	    },
 
 	    failure:function(response, options) {
@@ -142,7 +142,7 @@ tvheadend.dvrDetails = function(entry) {
 	});
     }
 
-}
+};
 
 /**
  *
@@ -344,7 +344,7 @@ tvheadend.dvrschedule = function() {
 	    
 	});
 	
-	win = new Ext.Window({
+	var win = new Ext.Window({
 	    title: 'Add single recording',
             layout: 'fit',
             width: 500,
@@ -364,8 +364,8 @@ tvheadend.dvrschedule = function() {
                     emptyText: '(default)',
                     value: '',
                     editable: false
-		})
-    };
+                });
+    }
 
 
     var panel = new Ext.grid.GridPanel({
@@ -408,12 +408,7 @@ tvheadend.dvrschedule = function() {
 	new tvheadend.dvrDetails(grid.getStore().getAt(index).data);
     }
     return panel;
-}
-
-/**
- *
- */
-
+};
 
 /**
  *
@@ -477,8 +472,8 @@ tvheadend.autoreceditor = function() {
 		if (value == '1,2,3,4,5,6,7')
 		    return 'All days';
 
-		ret = [];
-		tags = value.split(',');
+		var ret = [];
+		var tags = value.split(',');
 		for (var i = 0; i < tags.length; i++) {
 		    var tag = tvheadend.weekdays.getById(tags[i]);
 		    if (typeof tag !== 'undefined')
@@ -564,7 +559,8 @@ tvheadend.autoreceditor = function() {
 				     'autorec', cm, tvheadend.autorecRecord,
 				     [enabledColumn], tvheadend.autorecStore,
 				     'autorec.html', 'wand');
-}
+};
+
 /**
  *
  */
@@ -604,7 +600,7 @@ tvheadend.dvr = function() {
             tvheadend.dvrStore.reload();
 
 	if(m.updateEntry != null) {
-	    r = tvheadend.dvrStore.getById(m.id)
+	    var r = tvheadend.dvrStore.getById(m.id);
 	    if(typeof r === 'undefined') {
 		tvheadend.dvrStore.reload();
 		return;
@@ -647,12 +643,12 @@ tvheadend.dvr = function() {
 	autoScroll:true, 
 	title: 'Digital Video Recorder', 
 	iconCls: 'drive',
-	items: [new tvheadend.dvrschedule,
-		new tvheadend.autoreceditor
+	items: [new tvheadend.dvrschedule(),
+		new tvheadend.autoreceditor()
 	       ]
     });
     return panel;
-}
+};
 
 
 
@@ -833,5 +829,5 @@ tvheadend.dvrsettings = function() {
     }
 
     return confpanel;
-}
+};
 
