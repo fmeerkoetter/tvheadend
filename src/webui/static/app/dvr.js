@@ -165,21 +165,26 @@ tvheadend.dvrschedule = function() {
 	return dt.format('D j M H:i');
     } 
 
-   function renderDuration(value){
+    function renderDuration(value){
+       value = parseInt(value, 10);
+       if (isNaN(value)) {
+           return "Unknown duration";
+       }
+
        value = value / 60; /* Nevermind the seconds */
-       
+
        if(value >= 60) {
-	   var min = parseInt(value % 60);
-	   var hours = parseInt(value / 60);
+           var min = value % 60;
+           var hours = value / 60;
 
 	   if(min == 0) {
 	       return hours + ' hrs';
 	   }
 	   return hours + ' hrs, ' + min + ' min';
        } else {
-	   return parseInt(value) + ' min';
+           return value + ' min';
        }
-    } 
+    }
 
    function renderPri(value) {
        return tvheadend.dvrprio.getById(value).data.name;
