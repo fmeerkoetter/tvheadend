@@ -111,4 +111,4 @@ tvheadend.cwceditor = function() {
     });
 
     return grid;
-}
+};

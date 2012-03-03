@@ -57,4 +57,4 @@ tvheadend.cteditor = function() {
 				      titledIconColumn],
 				     null,
 				     'config_tags.html', 'tags');
-}
+};
